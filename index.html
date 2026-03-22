@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pacífico Digital — Agencia de Marketing Digital</title>
+
+  <!-- Fonts: Satoshi -->
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900,300i,400i,500i,700i,900i&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            midnight: '#0D1628',
+            navy: '#111E36',
+            'navy-light': '#192847',
+            'sky-light': '#8EC8EA',
+            'sky-mid': '#4BA8D5',
+            'sky-dark': '#2A7FAF',
+            gold: '#F5B93E',
+            'gold-light': '#FAD06A',
+            'gold-dark': '#D9961A',
+          },
+          fontFamily: {
+            display: ['Satoshi', 'sans-serif'],
+            body: ['Satoshi', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root {
+      --midnight: #0D1628;
+      --navy: #111E36;
+      --navy-light: #192847;
+      --sky-light: #8EC8EA;
+      --sky-mid: #4BA8D5;
+      --gold: #F5B93E;
+      --gold-light: #FAD06A;
+      --gold-dark: #D9961A;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Satoshi', sans-serif;
+      background-color: var(--midnight);
+      color: #E8EDF5;
+      overflow-x: hidden;
+    }
+
+    /* ── Grain overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    /* ── Typography ── */
+    h1, h2, h3, h4 {
+      font-family: 'Satoshi', sans-serif;
+      letter-spacing: -0.03em;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--midnight); }
+    ::-webkit-scrollbar-thumb { background: var(--navy-light); border-radius: 3px; }
+
+    /* ── Navigation ── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.5rem 0;
+      transition: background 0.4s ease, padding 0.4s ease, backdrop-filter 0.4s ease;
+    }
+    #navbar.scrolled {
+      background: rgba(13, 22, 40, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(142, 200, 234, 0.1);
+    }
+
+    /* ── Nav links ── */
+    .nav-link {
+      position: relative;
+      color: rgba(232, 237, 245, 0.75);
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.25s ease;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0; right: 0;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .nav-link:hover { color: #fff; }
+    .nav-link:hover::after { transform: scaleX(1); }
+
+    /* ── Buttons ── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gold);
+      color: var(--midnight);
+      font-family: 'Satoshi', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+      padding: 0.875rem 2rem;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow:
+        0 0 0 0 rgba(245, 185, 62, 0),
+        0 8px 32px rgba(245, 185, 62, 0.35),
+        0 2px 8px rgba(245, 185, 62, 0.2);
+      transition:
+        transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.25s ease,
+        background 0.2s ease;
+    }
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow:
+        0 0 0 4px rgba(245, 185, 62, 0.15),
+        0 12px 40px rgba(245, 185, 62, 0.45),
+        0 4px 12px rgba(245, 185, 62, 0.25);
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: #E8EDF5;
+      font-family: 'Satoshi', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.875rem 2rem;
+      border-radius: 100px;
+      border: 1px solid rgba(232, 237, 245, 0.25);
+      cursor: pointer;
+      text-decoration: none;
+      transition:
+        transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+        border-color 0.25s ease,
+        background 0.25s ease;
+    }
+    .btn-outline:hover {
+      border-color: rgba(142, 200, 234, 0.6);
+      background: rgba(142, 200, 234, 0.06);
+      transform: translateY(-2px);
+    }
+
+    /* ── Hero ── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 100%, rgba(75, 168, 213, 0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 20%, rgba(245, 185, 62, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 40% at 10% 30%, rgba(142, 200, 234, 0.08) 0%, transparent 50%),
+        linear-gradient(180deg, #0D1628 0%, #0F1C33 60%, #0D1A30 100%);
+    }
+
+    /* Animated horizon line */
+    .horizon-line {
+      position: absolute;
+      bottom: 25%;
+      left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(142, 200, 234, 0.3) 20%,
+        rgba(75, 168, 213, 0.5) 50%,
+        rgba(142, 200, 234, 0.3) 80%,
+        transparent 100%);
+      animation: horizonPulse 4s ease-in-out infinite;
+    }
+
+    @keyframes horizonPulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+
+    /* Wave shapes at bottom */
+    .wave-container {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 180px;
+      overflow: hidden;
+    }
+    .wave {
+      position: absolute;
+      bottom: 0; left: -10%;
+      width: 120%;
+      height: 100%;
+    }
+    .wave-1 {
+      background: radial-gradient(ellipse 100% 60% at 50% 100%, rgba(75, 168, 213, 0.12) 0%, transparent 70%);
+      animation: waveFloat 7s ease-in-out infinite;
+    }
+    .wave-2 {
+      background: radial-gradient(ellipse 80% 50% at 40% 100%, rgba(142, 200, 234, 0.08) 0%, transparent 70%);
+      animation: waveFloat 9s ease-in-out infinite reverse;
+    }
+    @keyframes waveFloat {
+      0%, 100% { transform: translateX(0) scaleY(1); }
+      50% { transform: translateX(3%) scaleY(1.1); }
+    }
+
+    /* Sun glow */
+    .sun-glow {
+      position: absolute;
+      top: 15%;
+      right: 10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(245, 185, 62, 0.08) 0%, rgba(245, 185, 62, 0.04) 40%, transparent 70%);
+      border-radius: 50%;
+      animation: sunPulse 6s ease-in-out infinite;
+    }
+    @keyframes sunPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+
+    /* Floating particles */
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* ── Section styles ── */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 1px;
+    }
+
+    /* ── Cards ── */
+    .service-card {
+      background: linear-gradient(135deg, rgba(25, 40, 71, 0.8) 0%, rgba(17, 30, 54, 0.6) 100%);
+      border: 1px solid rgba(142, 200, 234, 0.12);
+      border-radius: 20px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(142, 200, 234, 0.3);
+      box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(142, 200, 234, 0.08),
+        inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+    .service-card:hover::before { opacity: 1; }
+
+    .service-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      background: rgba(245, 185, 62, 0.1);
+      border: 1px solid rgba(245, 185, 62, 0.2);
+      color: var(--gold);
+    }
+
+    /* ── Stats ── */
+    .stat-number {
+      font-family: 'Satoshi', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Process ── */
+    .process-step {
+      position: relative;
+      padding-left: 4rem;
+    }
+    .process-step-num {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(245, 185, 62, 0.1);
+      border: 1px solid rgba(245, 185, 62, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Satoshi', sans-serif;
+      font-weight: 700;
+      color: var(--gold);
+      font-size: 1rem;
+    }
+    .process-line {
+      position: absolute;
+      left: 21px;
+      top: 44px;
+      bottom: -2rem;
+      width: 1px;
+      background: linear-gradient(180deg, rgba(245, 185, 62, 0.3) 0%, transparent 100%);
+    }
+
+    /* ── Testimonials ── */
+    .testimonial-card {
+      background: linear-gradient(145deg, rgba(25, 40, 71, 0.7) 0%, rgba(17, 30, 54, 0.5) 100%);
+      border: 1px solid rgba(142, 200, 234, 0.1);
+      border-radius: 20px;
+      padding: 2rem;
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: -0.5rem;
+      left: 1.5rem;
+      font-family: 'Satoshi', sans-serif;
+      font-size: 6rem;
+      line-height: 1;
+      color: var(--gold);
+      opacity: 0.2;
+    }
+
+    /* ── Scroll animations ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* Hero elements use CSS keyframe animations directly */
+    #hero .reveal {
+      opacity: 0;
+      animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    #hero .reveal-delay-1 { animation-delay: 0.15s; }
+    #hero .reveal-delay-2 { animation-delay: 0.3s; }
+    #hero .reveal-delay-3 { animation-delay: 0.45s; }
+    #hero .reveal-delay-4 { animation-delay: 0.6s; }
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Gold gradient text ── */
+    .gold-text {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 60%, #fff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Sky gradient text ── */
+    .sky-text {
+      background: linear-gradient(135deg, var(--sky-mid) 0%, var(--sky-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(142, 200, 234, 0.2), transparent);
+    }
+
+    /* ── CTA section ── */
+    .cta-section {
+      background: linear-gradient(135deg, rgba(25, 40, 71, 0.9) 0%, rgba(17, 30, 54, 0.7) 100%);
+      border: 1px solid rgba(142, 200, 234, 0.15);
+      border-radius: 28px;
+      overflow: hidden;
+      position: relative;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 100% 50%, rgba(245, 185, 62, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 0% 50%, rgba(75, 168, 213, 0.08) 0%, transparent 60%);
+    }
+
+    /* ── Footer ── */
+    .footer-link {
+      color: rgba(232, 237, 245, 0.5);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s ease;
+    }
+    .footer-link:hover { color: var(--sky-light); }
+
+    /* ── Mobile menu ── */
+    #mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 99;
+      background: rgba(11, 18, 34, 0.97);
+      backdrop-filter: blur(20px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    #mobile-menu.open { display: flex; }
+    .mobile-link {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 2rem;
+      color: rgba(232, 237, 245, 0.9);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .mobile-link:hover { color: var(--gold); }
+
+    /* ── Horizontal rule accent ── */
+    .accent-rule {
+      width: 48px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--sky-mid));
+      border-radius: 2px;
+    }
+
+    /* ── Portfolio card ── */
+    .portfolio-card {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      background: var(--navy-light);
+      border: 1px solid rgba(142, 200, 234, 0.1);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    }
+    .portfolio-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(245,185,62,0.15);
+    }
+    .portfolio-img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      display: block;
+    }
+    /* Overlay: pure gradient visual, no text (text always below image) */
+    .portfolio-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(13,22,40,0.6) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .portfolio-card:hover .portfolio-overlay { opacity: 1; }
+
+    /* Bottom caption always visible, no text in overlay */
+    .portfolio-caption {
+      padding: 1.25rem 1.5rem;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .portfolio-card:hover .portfolio-caption {
+      transform: translateY(-2px);
+    }
+
+    /* Tag */
+    .tag {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: rgba(75, 168, 213, 0.12);
+      border: 1px solid rgba(75, 168, 213, 0.25);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--sky-light);
+      letter-spacing: 0.04em;
+    }
+
+    /* Focus visible */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .desktop-nav { display: none; }
+      .hero-content { text-align: center; }
+      .hero-content .btn-row { justify-content: center; }
+    }
+    @media (min-width: 769px) {
+      #hamburger { display: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ════════════════════════════
+       NAVIGATION
+  ════════════════════════════ -->
+  <nav id="navbar">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 flex-shrink-0" style="text-decoration:none;">
+        <img src="Brand_assets/Pacifico digital-02 letra blanca.png" alt="Pacífico Digital" style="height:40px;width:auto;display:block;" />
+      </a>
+
+      <!-- Desktop nav -->
+      <div class="desktop-nav flex items-center gap-8">
+        <a href="#servicios" class="nav-link">Servicios</a>
+        <a href="#proceso" class="nav-link">Proceso</a>
+        <a href="#resultados" class="nav-link">Resultados</a>
+        <a href="#nosotros" class="nav-link">Nosotros</a>
+        <a href="#contacto" class="btn-primary text-sm" style="padding: 0.6rem 1.5rem;">Hablemos</a>
+      </div>
+
+      <!-- Hamburger -->
+      <button id="hamburger" aria-label="Abrir menú" style="background:none;border:none;cursor:pointer;padding:4px;color:#E8EDF5;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" role="dialog" aria-label="Menú de navegación">
+    <button id="close-menu" aria-label="Cerrar menú" style="position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;cursor:pointer;color:#E8EDF5;">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <a href="#servicios" class="mobile-link">Servicios</a>
+    <a href="#proceso" class="mobile-link">Proceso</a>
+    <a href="#resultados" class="mobile-link">Resultados</a>
+    <a href="#nosotros" class="mobile-link">Nosotros</a>
+    <a href="#contacto" class="btn-primary mt-4">Hablemos</a>
+  </div>
+
+
+  <!-- ════════════════════════════
+       HERO
+  ════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="sun-glow"></div>
+    <div class="horizon-line"></div>
+    <div class="wave-container">
+      <div class="wave wave-1"></div>
+      <div class="wave wave-2"></div>
+    </div>
+
+    <!-- Particles -->
+    <div class="particle" style="width:4px;height:4px;background:rgba(245,185,62,0.5);top:20%;left:15%;animation:float1 8s ease-in-out infinite;"></div>
+    <div class="particle" style="width:3px;height:3px;background:rgba(142,200,234,0.6);top:40%;left:75%;animation:float2 10s ease-in-out infinite;"></div>
+    <div class="particle" style="width:5px;height:5px;background:rgba(75,168,213,0.4);top:65%;left:30%;animation:float1 12s ease-in-out infinite;"></div>
+    <div class="particle" style="width:3px;height:3px;background:rgba(245,185,62,0.4);top:30%;left:55%;animation:float2 9s ease-in-out infinite;"></div>
+    <div class="particle" style="width:4px;height:4px;background:rgba(142,200,234,0.3);top:70%;left:85%;animation:float1 11s ease-in-out infinite;"></div>
+
+    <style>
+      @keyframes float1 {
+        0%,100%{transform:translateY(0) translateX(0);}
+        33%{transform:translateY(-18px) translateX(8px);}
+        66%{transform:translateY(10px) translateX(-6px);}
+      }
+      @keyframes float2 {
+        0%,100%{transform:translateY(0) translateX(0);}
+        33%{transform:translateY(14px) translateX(-10px);}
+        66%{transform:translateY(-8px) translateX(12px);}
+      }
+    </style>
+
+    <div class="max-w-7xl mx-auto px-6 py-32 relative z-10">
+      <div class="max-w-3xl hero-content">
+        <!-- Label -->
+        <div class="section-label mb-6 reveal">
+          Agencia de Marketing Digital
+        </div>
+
+        <!-- Headline -->
+        <h1 class="font-display text-5xl md:text-7xl font-black leading-tight mb-6 reveal reveal-delay-1"
+            style="line-height: 1.05;">
+          Tu marca en
+          <span class="gold-text italic"> la cima </span>
+          del mundo digital
+        </h1>
+
+        <!-- Subheadline -->
+        <p class="text-lg md:text-xl text-[rgba(232,237,245,0.7)] leading-relaxed mb-10 max-w-xl reveal reveal-delay-2"
+           style="line-height: 1.75;">
+          Conectamos tu negocio con las personas correctas en el momento exacto.
+          Estrategia, creatividad y datos al servicio de tu crecimiento.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap gap-4 btn-row reveal reveal-delay-3">
+          <a href="#contacto" class="btn-primary">
+            Comenzar ahora
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+          <a href="#resultados" class="btn-outline">
+            Ver resultados
+          </a>
+        </div>
+
+        <!-- Trust signals -->
+        <div class="flex items-center gap-6 mt-12 reveal reveal-delay-4">
+          <div class="flex -space-x-2">
+            <img src="https://placehold.co/36x36/192847/8EC8EA?text=C" alt="Cliente" class="w-9 h-9 rounded-full border-2 border-[#0D1628]" />
+            <img src="https://placehold.co/36x36/192847/F5B93E?text=E" alt="Cliente" class="w-9 h-9 rounded-full border-2 border-[#0D1628]" />
+            <img src="https://placehold.co/36x36/192847/4BA8D5?text=M" alt="Cliente" class="w-9 h-9 rounded-full border-2 border-[#0D1628]" />
+            <img src="https://placehold.co/36x36/2A7FAF/ffffff?text=+" alt="Más clientes" class="w-9 h-9 rounded-full border-2 border-[#0D1628]" />
+          </div>
+          <div>
+            <div class="flex gap-0.5 mb-0.5">
+              <span style="color:var(--gold);font-size:0.9rem;">★★★★★</span>
+            </div>
+            <p class="text-xs text-[rgba(232,237,245,0.55)]">+50 clientes satisfechos</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 z-10">
+      <span class="text-xs tracking-widest uppercase text-[rgba(232,237,245,0.5)]">Scroll</span>
+      <div style="width:1px;height:48px;background:linear-gradient(180deg,rgba(142,200,234,0.6),transparent);animation:scrollPulse 2s ease-in-out infinite;"></div>
+    </div>
+    <style>
+      @keyframes scrollPulse {
+        0%,100%{opacity:0.4;transform:scaleY(1);}
+        50%{opacity:1;transform:scaleY(1.1);}
+      }
+    </style>
+  </section>
+
+
+  <!-- ════════════════════════════
+       LOGO STRIP
+  ════════════════════════════ -->
+  <section class="py-16 overflow-hidden" style="background:rgba(17,30,54,0.4);border-top:1px solid rgba(142,200,234,0.08);border-bottom:1px solid rgba(142,200,234,0.08);">
+    <div class="max-w-7xl mx-auto px-6">
+      <p class="text-center text-xs tracking-[0.2em] uppercase text-[rgba(232,237,245,0.35)] mb-10 font-semibold">Marcas que confían en nosotros</p>
+      <div class="flex flex-wrap items-center justify-center gap-10 md:gap-16">
+        <div class="text-[rgba(232,237,245,0.25)] font-display font-bold text-lg tracking-wide hover:text-[rgba(232,237,245,0.5)] transition-colors duration-300">BRAND ONE</div>
+        <div class="text-[rgba(232,237,245,0.25)] font-display font-bold text-lg tracking-wide hover:text-[rgba(232,237,245,0.5)] transition-colors duration-300">STUDIO CO</div>
+        <div class="text-[rgba(232,237,245,0.25)] font-display font-bold text-lg tracking-wide hover:text-[rgba(232,237,245,0.5)] transition-colors duration-300">ELEVATE</div>
+        <div class="text-[rgba(232,237,245,0.25)] font-display font-bold text-lg tracking-wide hover:text-[rgba(232,237,245,0.5)] transition-colors duration-300">NOVA GROUP</div>
+        <div class="text-[rgba(232,237,245,0.25)] font-display font-bold text-lg tracking-wide hover:text-[rgba(232,237,245,0.5)] transition-colors duration-300">APEX CORP</div>
+        <div class="text-[rgba(232,237,245,0.25)] font-display font-bold text-lg tracking-wide hover:text-[rgba(232,237,245,0.5)] transition-colors duration-300">MERIDIAN</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════
+       SERVICIOS
+  ════════════════════════════ -->
+  <section id="servicios" class="py-28">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="mb-16 reveal">
+        <div class="section-label mb-4">Lo que hacemos</div>
+        <h2 class="font-display text-4xl md:text-5xl font-bold max-w-xl" style="line-height:1.1;">
+          Servicios diseñados para <span class="sky-text italic">hacer crecer</span> tu negocio
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Branding Digital -->
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          </div>
+          <div class="tag mb-3">Branding</div>
+          <h3 class="font-display text-xl font-bold mb-3 text-white">Branding Digital</h3>
+          <p class="text-[rgba(232,237,245,0.6)] leading-relaxed text-sm">
+            Construimos identidades de marca memorables. Desde la estrategia de posicionamiento hasta la identidad visual, hacemos que tu marca destaque y sea reconocida.
+          </p>
+          <div class="mt-4 pt-4" style="border-top:1px solid rgba(142,200,234,0.1);">
+            <a href="#contacto" class="text-sm font-semibold text-[var(--gold)] flex items-center gap-2 hover:gap-3 transition-all duration-200" style="text-decoration:none;">
+              Saber más
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Redes Sociales -->
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <div class="tag mb-3">Social Media</div>
+          <h3 class="font-display text-xl font-bold mb-3 text-white">Gestión de Redes Sociales</h3>
+          <p class="text-[rgba(232,237,245,0.6)] leading-relaxed text-sm">
+            Construimos comunidades activas y generamos contenido que conecta con tu audiencia. De la estrategia a la publicación, todo bajo nuestra responsabilidad.
+          </p>
+          <div class="mt-4 pt-4" style="border-top:1px solid rgba(142,200,234,0.1);">
+            <a href="#contacto" class="text-sm font-semibold text-[var(--gold)] flex items-center gap-2 hover:gap-3 transition-all duration-200" style="text-decoration:none;">
+              Saber más
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Publicidad Pagada -->
+        <div class="service-card reveal reveal-delay-3">
+          <div class="service-icon" style="background:rgba(75,168,213,0.1);border-color:rgba(75,168,213,0.25);color:var(--sky-mid);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+              <polyline points="16 7 22 7 22 13"/>
+            </svg>
+          </div>
+          <div class="tag mb-3">Paid Ads</div>
+          <h3 class="font-display text-xl font-bold mb-3 text-white">Publicidad Pagada</h3>
+          <p class="text-[rgba(232,237,245,0.6)] leading-relaxed text-sm">
+            Google Ads, Meta Ads, TikTok Ads. Campañas con segmentación precisa, creatividades irresistibles y optimización constante para escalar tus resultados.
+          </p>
+          <div class="mt-4 pt-4" style="border-top:1px solid rgba(142,200,234,0.1);">
+            <a href="#contacto" class="text-sm font-semibold text-[var(--gold)] flex items-center gap-2 hover:gap-3 transition-all duration-200" style="text-decoration:none;">
+              Saber más
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Contenido y Diseño -->
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-icon" style="background:rgba(245,185,62,0.1);border-color:rgba(245,185,62,0.2);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold);">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/>
+            </svg>
+          </div>
+          <div class="tag mb-3">Contenido</div>
+          <h3 class="font-display text-xl font-bold mb-3 text-white">Contenido & Diseño</h3>
+          <p class="text-[rgba(232,237,245,0.6)] leading-relaxed text-sm">
+            Diseño visual, copywriting y producción de contenido que representa tu marca con autenticidad. Cada pieza cuenta una historia que convierte.
+          </p>
+          <div class="mt-4 pt-4" style="border-top:1px solid rgba(142,200,234,0.1);">
+            <a href="#contacto" class="text-sm font-semibold text-[var(--gold)] flex items-center gap-2 hover:gap-3 transition-all duration-200" style="text-decoration:none;">
+              Saber más
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Email Marketing -->
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-icon" style="background:rgba(75,168,213,0.1);border-color:rgba(75,168,213,0.2);color:var(--sky-mid);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <div class="tag mb-3">Email Marketing</div>
+          <h3 class="font-display text-xl font-bold mb-3 text-white">Email & Automatización</h3>
+          <p class="text-[rgba(232,237,245,0.6)] leading-relaxed text-sm">
+            Secuencias automatizadas que nutren tus leads y convierten suscriptores en clientes fieles. El canal con el mayor ROI del marketing digital.
+          </p>
+          <div class="mt-4 pt-4" style="border-top:1px solid rgba(142,200,234,0.1);">
+            <a href="#contacto" class="text-sm font-semibold text-[var(--gold)] flex items-center gap-2 hover:gap-3 transition-all duration-200" style="text-decoration:none;">
+              Saber más
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Analítica -->
+        <div class="service-card reveal reveal-delay-3">
+          <div class="service-icon" style="background:rgba(245,185,62,0.08);border-color:rgba(245,185,62,0.2);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold);">
+              <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+          </div>
+          <div class="tag mb-3">Analytics</div>
+          <h3 class="font-display text-xl font-bold mb-3 text-white">Analítica & Reportes</h3>
+          <p class="text-[rgba(232,237,245,0.6)] leading-relaxed text-sm">
+            Dashboards en tiempo real, reportes claros y decisiones basadas en datos. Siempre sabrás exactamente qué funciona y hacia dónde va tu inversión.
+          </p>
+          <div class="mt-4 pt-4" style="border-top:1px solid rgba(142,200,234,0.1);">
+            <a href="#contacto" class="text-sm font-semibold text-[var(--gold)] flex items-center gap-2 hover:gap-3 transition-all duration-200" style="text-decoration:none;">
+              Saber más
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════
+       STATS
+  ════════════════════════════ -->
+  <section id="resultados" class="py-24" style="background:linear-gradient(180deg,rgba(17,30,54,0.5) 0%,transparent 100%);">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="text-center mb-16 reveal">
+        <div class="section-label mb-4 justify-center">Nuestros números</div>
+        <h2 class="font-display text-4xl md:text-5xl font-bold">
+          Resultados que <span class="gold-text italic">hablan solos</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+        <div class="text-center reveal reveal-delay-1">
+          <div class="flex items-start justify-center">
+            <div class="stat-number" data-target="50">0</div>
+            <span class="font-display font-bold mt-2" style="font-size:2rem;color:var(--gold);line-height:1;">+</span>
+          </div>
+          <div class="text-sm text-[rgba(232,237,245,0.65)] mt-2 font-medium">Clientes activos</div>
+        </div>
+        <div class="text-center reveal reveal-delay-2">
+          <div class="flex items-start justify-center">
+            <div class="stat-number" data-target="320">0</div>
+            <span class="font-display font-bold mt-2" style="font-size:2rem;color:var(--gold);line-height:1;">%</span>
+          </div>
+          <div class="text-sm text-[rgba(232,237,245,0.65)] mt-2 font-medium">ROI promedio en Ads</div>
+        </div>
+        <div class="text-center reveal reveal-delay-3">
+          <div class="flex items-end justify-center gap-1">
+            <div class="stat-number" data-target="3">0</div>
+            <span class="font-body font-semibold mb-3" style="font-size:1rem;color:rgba(232,237,245,0.5);">años</span>
+          </div>
+          <div class="text-sm text-[rgba(232,237,245,0.65)] mt-2 font-medium">De experiencia</div>
+        </div>
+        <div class="text-center reveal reveal-delay-4">
+          <div class="flex items-start justify-center">
+            <div class="stat-number" data-target="98">0</div>
+            <span class="font-display font-bold mt-2" style="font-size:2rem;color:var(--gold);line-height:1;">%</span>
+          </div>
+          <div class="text-sm text-[rgba(232,237,245,0.65)] mt-2 font-medium">Satisfacción clientes</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════
+       PROCESO
+  ════════════════════════════ -->
+  <section id="proceso" class="py-28">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Left: text -->
+        <div>
+          <div class="section-label mb-4 reveal">Cómo trabajamos</div>
+          <h2 class="font-display text-4xl md:text-5xl font-bold mb-6 reveal reveal-delay-1" style="line-height:1.1;">
+            Un proceso claro para <span class="sky-text italic">resultados reales</span>
+          </h2>
+          <p class="text-[rgba(232,237,245,0.65)] leading-relaxed mb-10 reveal reveal-delay-2" style="line-height:1.75;">
+            No somos una agencia más. Cada proyecto comienza con escucha activa y termina con métricas que importan. Así es cómo llevamos tu marca al siguiente nivel.
+          </p>
+
+          <div class="space-y-10">
+
+            <div class="process-step reveal reveal-delay-1">
+              <div class="process-step-num">01</div>
+              <div class="process-line"></div>
+              <h3 class="font-display text-lg font-bold text-white mb-2">Diagnóstico & Estrategia</h3>
+              <p class="text-sm text-[rgba(232,237,245,0.6)]" style="line-height:1.7;">Analizamos tu negocio, mercado y competencia. Definimos objetivos SMART y construimos la hoja de ruta personalizada para tu marca.</p>
+            </div>
+
+            <div class="process-step reveal reveal-delay-2">
+              <div class="process-step-num">02</div>
+              <div class="process-line"></div>
+              <h3 class="font-display text-lg font-bold text-white mb-2">Creación & Lanzamiento</h3>
+              <p class="text-sm text-[rgba(232,237,245,0.6)]" style="line-height:1.7;">Diseñamos campañas, creamos contenido y ponemos en marcha cada canal con la configuración óptima para capturar atención y generar acción.</p>
+            </div>
+
+            <div class="process-step reveal reveal-delay-3">
+              <div class="process-step-num">03</div>
+              <div class="process-line"></div>
+              <h3 class="font-display text-lg font-bold text-white mb-2">Optimización Continua</h3>
+              <p class="text-sm text-[rgba(232,237,245,0.6)]" style="line-height:1.7;">Monitoreamos, ajustamos y escalamos. Los datos guían cada decisión para asegurarnos de que tu inversión crezca mes a mes.</p>
+            </div>
+
+            <div class="process-step reveal reveal-delay-4" style="padding-bottom:0;">
+              <div class="process-step-num">04</div>
+              <h3 class="font-display text-lg font-bold text-white mb-2">Reportes & Transparencia</h3>
+              <p class="text-sm text-[rgba(232,237,245,0.6)]" style="line-height:1.7;">Reportes claros, reuniones periódicas y comunicación directa. Siempre sabrás exactamente dónde está tu inversión y qué está logrando.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right: visual -->
+        <div class="reveal reveal-delay-2">
+          <div class="relative">
+            <!-- Main image card -->
+            <div class="rounded-2xl overflow-hidden" style="background:var(--navy-light);border:1px solid rgba(142,200,234,0.12);">
+              <img src="https://placehold.co/600x440/111E36/4BA8D5?text=Estrategia+Digital" alt="Estrategia digital Pacífico" class="w-full" style="display:block;mix-blend-mode:luminosity;opacity:0.7;" />
+              <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,22,40,0.8) 0%,transparent 60%);border-radius:1rem;"></div>
+            </div>
+            <!-- Floating metric card -->
+            <div class="absolute -bottom-6 -left-6 p-4 rounded-xl" style="background:rgba(13,22,40,0.95);border:1px solid rgba(245,185,62,0.25);backdrop-filter:blur(12px);box-shadow:0 20px 48px rgba(0,0,0,0.4);">
+              <div class="text-xs text-[rgba(232,237,245,0.5)] mb-1 font-semibold uppercase tracking-wider">ROI del último mes</div>
+              <div class="text-2xl font-display font-bold" style="color:var(--gold);">+284%</div>
+              <div class="flex items-center gap-1 mt-1">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--sky-mid)" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                <span class="text-xs" style="color:var(--sky-mid);">vs mes anterior</span>
+              </div>
+            </div>
+            <!-- Floating avatar card -->
+            <div class="absolute -top-4 -right-4 p-3 rounded-xl" style="background:rgba(13,22,40,0.95);border:1px solid rgba(142,200,234,0.2);backdrop-filter:blur(12px);">
+              <div class="flex items-center gap-3">
+                <img src="https://placehold.co/40x40/4BA8D5/ffffff?text=E" alt="Equipo" class="w-10 h-10 rounded-full" />
+                <div>
+                  <div class="text-xs font-bold text-white">Equipo asignado</div>
+                  <div class="text-xs text-[rgba(232,237,245,0.5)]">3 especialistas</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════
+       PORTFOLIO
+  ════════════════════════════ -->
+  <section class="py-28" style="background:linear-gradient(180deg,transparent,rgba(17,30,54,0.4),transparent);">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 reveal">
+        <div>
+          <div class="section-label mb-4">Nuestro trabajo</div>
+          <h2 class="font-display text-4xl md:text-5xl font-bold" style="line-height:1.1;">
+            Casos de <span class="gold-text italic">éxito</span>
+          </h2>
+        </div>
+        <a href="#contacto" class="btn-outline self-start md:self-auto">Ver todos</a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div class="portfolio-card reveal reveal-delay-1">
+          <div style="position:relative;overflow:hidden;">
+            <img src="https://placehold.co/600x375/192847/4BA8D5?text=E-commerce+Fashion" alt="Case study" class="portfolio-img" />
+            <div class="portfolio-overlay"></div>
+          </div>
+          <div class="portfolio-caption">
+            <div class="tag mb-2">Paid Ads · E-commerce</div>
+            <h3 class="font-display text-base font-bold text-white mt-1">Marca de moda local — +180% en ventas</h3>
+          </div>
+        </div>
+
+        <div class="portfolio-card reveal reveal-delay-2">
+          <div style="position:relative;overflow:hidden;">
+            <img src="https://placehold.co/600x375/111E36/8EC8EA?text=Restaurante+%26+Gastronomia" alt="Case study" class="portfolio-img" />
+            <div class="portfolio-overlay"></div>
+          </div>
+          <div class="portfolio-caption">
+            <div class="tag mb-2">Social Media · Contenido</div>
+            <h3 class="font-display text-base font-bold text-white mt-1">Restaurante gourmet — 15K seguidores en 3 meses</h3>
+          </div>
+        </div>
+
+        <div class="portfolio-card reveal reveal-delay-3">
+          <div style="position:relative;overflow:hidden;">
+            <img src="https://placehold.co/600x375/192847/F5B93E?text=Startup+E-commerce" alt="Case study" class="portfolio-img" />
+            <div class="portfolio-overlay"></div>
+          </div>
+          <div class="portfolio-caption">
+            <div class="tag mb-2">Paid Ads · Email</div>
+            <h3 class="font-display text-base font-bold text-white mt-1">Startup e-commerce — x4 en conversiones</h3>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════
+       NOSOTROS / POR QUÉ ELEGIRNOS
+  ════════════════════════════ -->
+  <section id="nosotros" class="py-28">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+        <div class="section-label mb-4 justify-center">¿Por qué Pacífico?</div>
+        <h2 class="font-display text-4xl md:text-5xl font-bold mb-4" style="line-height:1.1;">
+          No somos solo una agencia.<br/><span class="sky-text italic">Somos tu equipo.</span>
+        </h2>
+        <p class="text-[rgba(232,237,245,0.6)]" style="line-height:1.75;">
+          Trabajamos como una extensión de tu empresa, con la misma pasión y compromiso que tú pones en tu negocio.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <div class="text-center p-6 rounded-2xl reveal reveal-delay-1" style="background:rgba(25,40,71,0.4);border:1px solid rgba(142,200,234,0.08);">
+          <div class="w-14 h-14 rounded-2xl mx-auto mb-4 flex items-center justify-center" style="background:rgba(245,185,62,0.1);border:1px solid rgba(245,185,62,0.2);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3 class="font-display font-bold text-white mb-2">Transparencia total</h3>
+          <p class="text-xs text-[rgba(232,237,245,0.55)]" style="line-height:1.7;">Sin letra pequeña. Reportes claros, costos definidos y comunicación abierta en todo momento.</p>
+        </div>
+
+        <div class="text-center p-6 rounded-2xl reveal reveal-delay-2" style="background:rgba(25,40,71,0.4);border:1px solid rgba(142,200,234,0.08);">
+          <div class="w-14 h-14 rounded-2xl mx-auto mb-4 flex items-center justify-center" style="background:rgba(75,168,213,0.1);border:1px solid rgba(75,168,213,0.2);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sky-mid)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <h3 class="font-display font-bold text-white mb-2">Resultados rápidos</h3>
+          <p class="text-xs text-[rgba(232,237,245,0.55)]" style="line-height:1.7;">Primeros resultados visibles en 30 días. No esperamos meses para mostrar impacto.</p>
+        </div>
+
+        <div class="text-center p-6 rounded-2xl reveal reveal-delay-3" style="background:rgba(25,40,71,0.4);border:1px solid rgba(142,200,234,0.08);">
+          <div class="w-14 h-14 rounded-2xl mx-auto mb-4 flex items-center justify-center" style="background:rgba(245,185,62,0.1);border:1px solid rgba(245,185,62,0.2);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3 class="font-display font-bold text-white mb-2">Equipo dedicado</h3>
+          <p class="text-xs text-[rgba(232,237,245,0.55)]" style="line-height:1.7;">Un equipo especialista asignado a tu cuenta. Siempre disponibles, siempre enfocados en ti.</p>
+        </div>
+
+        <div class="text-center p-6 rounded-2xl reveal reveal-delay-4" style="background:rgba(25,40,71,0.4);border:1px solid rgba(142,200,234,0.08);">
+          <div class="w-14 h-14 rounded-2xl mx-auto mb-4 flex items-center justify-center" style="background:rgba(75,168,213,0.1);border:1px solid rgba(75,168,213,0.2);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sky-mid)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <h3 class="font-display font-bold text-white mb-2">Estrategia data-driven</h3>
+          <p class="text-xs text-[rgba(232,237,245,0.55)]" style="line-height:1.7;">Cada decisión respaldada por datos. Sin suposiciones, sin desperdiciar tu presupuesto.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════
+       TESTIMONIOS
+  ════════════════════════════ -->
+  <section class="py-28" style="background:linear-gradient(180deg,transparent,rgba(17,30,54,0.4),transparent);">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="text-center mb-14 reveal">
+        <div class="section-label mb-4 justify-center">Testimonios</div>
+        <h2 class="font-display text-4xl md:text-5xl font-bold">
+          Lo que dicen <span class="gold-text italic">nuestros clientes</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="flex gap-0.5 mb-4" style="margin-top:1rem;">
+            <span style="color:var(--gold);">★★★★★</span>
+          </div>
+          <p class="text-[rgba(232,237,245,0.75)] text-sm leading-relaxed mb-6" style="line-height:1.75;">
+            "Pacífico Digital transformó nuestra presencia online. En solo 3 meses triplicamos nuestras ventas por Instagram. El equipo es increíblemente profesional y siempre están disponibles."
+          </p>
+          <div class="flex items-center gap-3">
+            <img src="https://placehold.co/44x44/192847/8EC8EA?text=ML" alt="María López" class="w-11 h-11 rounded-full" />
+            <div>
+              <div class="text-sm font-bold text-white">María López</div>
+              <div class="text-xs text-[rgba(232,237,245,0.45)]">CEO, Boutique Luz</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-2">
+          <div class="flex gap-0.5 mb-4" style="margin-top:1rem;">
+            <span style="color:var(--gold);">★★★★★</span>
+          </div>
+          <p class="text-[rgba(232,237,245,0.75)] text-sm leading-relaxed mb-6" style="line-height:1.75;">
+            "Las campañas de publicidad pagada que diseñaron superaron todas nuestras expectativas. Triplicamos las conversiones en 3 meses y el costo por adquisición bajó a la mitad. ROI extraordinario."
+          </p>
+          <div class="flex items-center gap-3">
+            <img src="https://placehold.co/44x44/192847/F5B93E?text=CR" alt="Carlos Reyes" class="w-11 h-11 rounded-full" />
+            <div>
+              <div class="text-sm font-bold text-white">Carlos Reyes</div>
+              <div class="text-xs text-[rgba(232,237,245,0.45)]">Director, TechSol MX</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-3">
+          <div class="flex gap-0.5 mb-4" style="margin-top:1rem;">
+            <span style="color:var(--gold);">★★★★★</span>
+          </div>
+          <p class="text-[rgba(232,237,245,0.75)] text-sm leading-relaxed mb-6" style="line-height:1.75;">
+            "Lo que más valoro es la transparencia. Sé exactamente en qué se gasta cada peso y los resultados son consistentes. Son realmente un aliado estratégico para nuestro restaurante."
+          </p>
+          <div class="flex items-center gap-3">
+            <img src="https://placehold.co/44x44/192847/4BA8D5?text=AF" alt="Ana Flores" class="w-11 h-11 rounded-full" />
+            <div>
+              <div class="text-sm font-bold text-white">Ana Flores</div>
+              <div class="text-xs text-[rgba(232,237,245,0.45)]">Dueña, La Mesa Perfecta</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════
+       CTA / CONTACTO
+  ════════════════════════════ -->
+  <section id="contacto" class="py-28">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="cta-section p-12 md:p-16 reveal">
+        <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12">
+
+          <div class="max-w-lg">
+            <div class="section-label mb-4">¿Listo para crecer?</div>
+            <h2 class="font-display text-4xl md:text-5xl font-bold mb-6" style="line-height:1.1;">
+              Llevemos tu marca al siguiente nivel
+            </h2>
+            <p class="text-[rgba(232,237,245,0.65)] leading-relaxed" style="line-height:1.75;">
+              Una llamada gratuita de 30 minutos para entender tu negocio y mostrarte exactamente cómo podemos ayudarte. Sin compromiso.
+            </p>
+            <div class="flex flex-wrap items-center gap-6 mt-8">
+              <div class="flex items-center gap-2 text-sm text-[rgba(232,237,245,0.6)]">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Sin contratos largos
+              </div>
+              <div class="flex items-center gap-2 text-sm text-[rgba(232,237,245,0.6)]">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Resultados garantizados
+              </div>
+              <div class="flex items-center gap-2 text-sm text-[rgba(232,237,245,0.6)]">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Consulta gratuita
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact form -->
+          <div class="w-full lg:w-96 flex-shrink-0">
+            <div class="rounded-2xl p-6" style="background:rgba(13,22,40,0.7);border:1px solid rgba(142,200,234,0.15);backdrop-filter:blur(12px);">
+              <h3 class="font-display font-bold text-white text-xl mb-5">Agenda tu consulta gratis</h3>
+              <form id="contact-form" class="space-y-4" onsubmit="handleSubmit(event)">
+                <div>
+                  <label class="block text-xs font-semibold text-[rgba(232,237,245,0.5)] mb-2 tracking-wide uppercase">Nombre</label>
+                  <input type="text" placeholder="Tu nombre completo" required
+                    style="width:100%;background:rgba(25,40,71,0.6);border:1px solid rgba(142,200,234,0.15);border-radius:10px;padding:0.75rem 1rem;color:#E8EDF5;font-family:'Satoshi',sans-serif;font-size:0.875rem;outline:none;transition:border-color 0.2s ease;"
+                    onfocus="this.style.borderColor='rgba(245,185,62,0.5)'"
+                    onblur="this.style.borderColor='rgba(142,200,234,0.15)'" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-[rgba(232,237,245,0.5)] mb-2 tracking-wide uppercase">Email</label>
+                  <input type="email" placeholder="tu@empresa.com" required
+                    style="width:100%;background:rgba(25,40,71,0.6);border:1px solid rgba(142,200,234,0.15);border-radius:10px;padding:0.75rem 1rem;color:#E8EDF5;font-family:'Satoshi',sans-serif;font-size:0.875rem;outline:none;transition:border-color 0.2s ease;"
+                    onfocus="this.style.borderColor='rgba(245,185,62,0.5)'"
+                    onblur="this.style.borderColor='rgba(142,200,234,0.15)'" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-[rgba(232,237,245,0.5)] mb-2 tracking-wide uppercase">Servicio de interés</label>
+                  <select required
+                    style="width:100%;background:rgba(25,40,71,0.6);border:1px solid rgba(142,200,234,0.15);border-radius:10px;padding:0.75rem 1rem;color:#E8EDF5;font-family:'Satoshi',sans-serif;font-size:0.875rem;outline:none;appearance:none;">
+                    <option value="" disabled selected style="color:rgba(232,237,245,0.4);">Selecciona un servicio</option>
+                    <option value="branding">Branding Digital</option>
+                    <option value="social">Redes Sociales</option>
+                    <option value="ads">Publicidad Pagada</option>
+                    <option value="contenido">Contenido &amp; Diseño</option>
+                    <option value="email">Email Marketing</option>
+                    <option value="paquete">Paquete completo</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-[rgba(232,237,245,0.5)] mb-2 tracking-wide uppercase">Mensaje (opcional)</label>
+                  <textarea placeholder="Cuéntanos sobre tu negocio..." rows="3"
+                    style="width:100%;background:rgba(25,40,71,0.6);border:1px solid rgba(142,200,234,0.15);border-radius:10px;padding:0.75rem 1rem;color:#E8EDF5;font-family:'Satoshi',sans-serif;font-size:0.875rem;outline:none;resize:vertical;transition:border-color 0.2s ease;"
+                    onfocus="this.style.borderColor='rgba(245,185,62,0.5)'"
+                    onblur="this.style.borderColor='rgba(142,200,234,0.15)'"></textarea>
+                </div>
+                <button type="submit" class="btn-primary w-full justify-center" style="border:none;">
+                  Agendar consulta gratuita
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </button>
+              </form>
+              <div id="form-success" style="display:none;text-align:center;padding:2rem;">
+                <div style="font-size:2.5rem;margin-bottom:0.5rem;">🌊</div>
+                <div class="font-display text-white font-bold text-lg">¡Mensaje enviado!</div>
+                <div class="text-sm text-[rgba(232,237,245,0.6)] mt-2">Te contactaremos en menos de 24 horas.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════
+       FOOTER
+  ════════════════════════════ -->
+  <footer class="pt-16 pb-8" style="border-top:1px solid rgba(142,200,234,0.1);">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+        <!-- Brand col -->
+        <div class="lg:col-span-1">
+          <img src="Brand_assets/Pacifico digital-02 letra blanca.png" alt="Pacífico Digital" style="height:36px;width:auto;display:block;margin-bottom:1rem;" />
+          <p class="text-sm text-[rgba(232,237,245,0.5)] leading-relaxed mb-6" style="max-width:240px;">
+            Tu agencia de marketing digital de confianza. Resultados reales, estrategias comprobadas.
+          </p>
+          <!-- Social icons -->
+          <div class="flex gap-3">
+            <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-xl flex items-center justify-center transition-colors duration-200" style="background:rgba(25,40,71,0.7);border:1px solid rgba(142,200,234,0.1);" onmouseover="this.style.borderColor='rgba(245,185,62,0.4)'" onmouseout="this.style.borderColor='rgba(142,200,234,0.1)'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(232,237,245,0.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </a>
+            <a href="#" aria-label="Facebook" class="w-9 h-9 rounded-xl flex items-center justify-center transition-colors duration-200" style="background:rgba(25,40,71,0.7);border:1px solid rgba(142,200,234,0.1);" onmouseover="this.style.borderColor='rgba(245,185,62,0.4)'" onmouseout="this.style.borderColor='rgba(142,200,234,0.1)'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(232,237,245,0.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
+            </a>
+            <a href="#" aria-label="LinkedIn" class="w-9 h-9 rounded-xl flex items-center justify-center transition-colors duration-200" style="background:rgba(25,40,71,0.7);border:1px solid rgba(142,200,234,0.1);" onmouseover="this.style.borderColor='rgba(245,185,62,0.4)'" onmouseout="this.style.borderColor='rgba(142,200,234,0.1)'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(232,237,245,0.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Servicios -->
+        <div>
+          <h4 class="font-display font-bold text-white text-sm mb-4 uppercase tracking-wider">Servicios</h4>
+          <ul class="space-y-2.5">
+            <li><a href="#servicios" class="footer-link">Branding Digital</a></li>
+            <li><a href="#servicios" class="footer-link">Redes Sociales</a></li>
+            <li><a href="#servicios" class="footer-link">Publicidad Pagada</a></li>
+            <li><a href="#servicios" class="footer-link">Contenido &amp; Diseño</a></li>
+            <li><a href="#servicios" class="footer-link">Email Marketing</a></li>
+            <li><a href="#servicios" class="footer-link">Analítica Web</a></li>
+          </ul>
+        </div>
+
+        <!-- Empresa -->
+        <div>
+          <h4 class="font-display font-bold text-white text-sm mb-4 uppercase tracking-wider">Empresa</h4>
+          <ul class="space-y-2.5">
+            <li><a href="#nosotros" class="footer-link">Sobre nosotros</a></li>
+            <li><a href="#proceso" class="footer-link">Proceso</a></li>
+            <li><a href="#resultados" class="footer-link">Casos de éxito</a></li>
+            <li><a href="#contacto" class="footer-link">Contacto</a></li>
+          </ul>
+        </div>
+
+        <!-- Contacto -->
+        <div>
+          <h4 class="font-display font-bold text-white text-sm mb-4 uppercase tracking-wider">Contacto</h4>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-sm text-[rgba(232,237,245,0.5)]">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--sky-light)" stroke-width="2" stroke-linecap="round" class="mt-0.5 flex-shrink-0">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+              </svg>
+              hola@pacificodigital.mx
+            </li>
+            <li class="flex items-start gap-3 text-sm text-[rgba(232,237,245,0.5)]">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--sky-light)" stroke-width="2" stroke-linecap="round" class="mt-0.5 flex-shrink-0">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.56 3.38 2 2 0 0 1 3.53 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 6 6l.88-.88a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              +52 55 1234 5678
+            </li>
+            <li class="flex items-start gap-3 text-sm text-[rgba(232,237,245,0.5)]">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--sky-light)" stroke-width="2" stroke-linecap="round" class="mt-0.5 flex-shrink-0">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+              Ciudad de México, México
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="divider mb-8"></div>
+
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[rgba(232,237,245,0.35)]">
+        <span>© 2026 Pacífico Digital. Todos los derechos reservados.</span>
+        <div class="flex gap-6">
+          <a href="#" class="footer-link" style="font-size:0.75rem;">Política de privacidad</a>
+          <a href="#" class="footer-link" style="font-size:0.75rem;">Términos de servicio</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ════════════════════════════
+       JAVASCRIPT
+  ════════════════════════════ -->
+  <script>
+    // ── Navbar scroll effect ──
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // ── Mobile menu ──
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeMenu = document.getElementById('close-menu');
+
+    hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+    closeMenu.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    mobileMenu.querySelectorAll('.mobile-link, .btn-primary').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    });
+
+    // ── Scroll reveal ──
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    // ── Trigger hero reveals immediately ──
+    document.querySelectorAll('#hero .reveal').forEach(el => el.classList.add('visible'));
+    setTimeout(() => {
+      document.querySelectorAll('#hero .reveal').forEach(el => el.classList.add('visible'));
+    }, 50);
+
+    // ── Counter animation ──
+    function animateCounter(el) {
+      const target = parseInt(el.getAttribute('data-target'));
+      const duration = 1800;
+      const start = performance.now();
+      const step = (now) => {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target);
+        if (progress < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.stat-number').forEach(el => counterObserver.observe(el));
+
+    // ── Form submit ──
+    function handleSubmit(e) {
+      e.preventDefault();
+      const form = document.getElementById('contact-form');
+      const success = document.getElementById('form-success');
+      form.style.opacity = '0';
+      form.style.transition = 'opacity 0.3s ease';
+      setTimeout(() => {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      }, 300);
+    }
+  </script>
+
+</body>
+</html>
