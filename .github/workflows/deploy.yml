@@ -17,7 +17,7 @@ jobs:
           server: ftp.medicodigital.com.mx
           username: DonPacifico@pacifico.digital
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /public_html/
+          server-dir: /pacifico.digital/
           exclude: |
             **/.git*
             **/.git*/**
