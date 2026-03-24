@@ -15,9 +15,9 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ftp.medicodigital.com.mx
-          username: DonPacifico@pacifico.digital
+          username: deploypd@pacifico.digital
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /pacifico.digital/
+          server-dir: /
           exclude: |
             **/.git*
             **/.git*/**
