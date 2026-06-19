@@ -18,6 +18,7 @@ jobs:
           username: deploypd@pacifico.digital
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: /
+          timeout: 190000
           exclude: |
             **/.git*
             **/.git*/**
