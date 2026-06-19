@@ -1,9 +1,7 @@
 name: Deploy to Neubox FTP
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   deploy:
