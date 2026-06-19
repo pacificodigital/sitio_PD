@@ -26,7 +26,13 @@ const MIME_TYPES = {
 
 const server = http.createServer((req, res) => {
   let urlPath = req.url.split('?')[0];
-  if (urlPath === '/') urlPath = '/index.html';
+  if (urlPath === '/') {
+    urlPath = '/index.html';
+  } else if (urlPath.endsWith('/')) {
+    urlPath = urlPath + 'index.html';
+  } else if (!path.extname(urlPath)) {
+    urlPath = urlPath + '/index.html';
+  }
 
   const filePath = path.join(__dirname, decodeURIComponent(urlPath));
   const ext = path.extname(filePath).toLowerCase();

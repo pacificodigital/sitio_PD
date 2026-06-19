@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Política de Privacidad — Pacífico Digital</title>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WMZ4BKPW');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Fonts: Satoshi -->
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900,300i,400i,500i,700i,900i&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            midnight: '#0D1628',
+            navy: '#111E36',
+            'navy-light': '#192847',
+            'sky-light': '#8EC8EA',
+            'sky-mid': '#4BA8D5',
+            'sky-dark': '#2A7FAF',
+            gold: '#F5B93E',
+            'gold-light': '#FAD06A',
+            'gold-dark': '#D9961A',
+          },
+          fontFamily: {
+            display: ['Satoshi', 'sans-serif'],
+            body: ['Satoshi', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root {
+      --midnight: #0D1628;
+      --navy: #111E36;
+      --navy-light: #192847;
+      --sky-light: #8EC8EA;
+      --sky-mid: #4BA8D5;
+      --gold: #F5B93E;
+      --gold-light: #FAD06A;
+      --gold-dark: #D9961A;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Satoshi', sans-serif;
+      background-color: var(--midnight);
+      color: #E8EDF5;
+      overflow-x: hidden;
+    }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    h1, h2, h3, h4 { font-family: 'Satoshi', sans-serif; letter-spacing: -0.03em; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--midnight); }
+    ::-webkit-scrollbar-thumb { background: var(--navy-light); border-radius: 3px; }
+
+    /* Navigation */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.5rem 0;
+      transition: background 0.4s ease, padding 0.4s ease, backdrop-filter 0.4s ease;
+    }
+    #navbar.scrolled {
+      background: rgba(13, 22, 40, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(142, 200, 234, 0.1);
+    }
+
+    .nav-link {
+      position: relative;
+      color: rgba(232, 237, 245, 0.75);
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.25s ease;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0; right: 0;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .nav-link:hover { color: #fff; }
+    .nav-link:hover::after { transform: scaleX(1); }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gold);
+      color: var(--midnight);
+      font-family: 'Satoshi', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+      padding: 0.875rem 2rem;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 8px 32px rgba(245, 185, 62, 0.35), 0 2px 8px rgba(245, 185, 62, 0.2);
+      transition:
+        transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.25s ease,
+        background 0.2s ease;
+    }
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 0 0 4px rgba(245, 185, 62, 0.15), 0 12px 40px rgba(245, 185, 62, 0.45), 0 4px 12px rgba(245, 185, 62, 0.25);
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .gold-text {
+      display: inline-block;
+      padding: 0 0.06em 0.08em;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 60%, #fff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(142, 200, 234, 0.2), transparent);
+    }
+
+    .footer-link {
+      color: rgba(232, 237, 245, 0.5);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s ease;
+    }
+    .footer-link:hover { color: var(--sky-light); }
+
+    #mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 99;
+      background: rgba(11, 18, 34, 0.97);
+      backdrop-filter: blur(20px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    #mobile-menu.open { display: flex; }
+    .mobile-link {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 2rem;
+      color: rgba(232, 237, 245, 0.9);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .mobile-link:hover { color: var(--gold); }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 1024px) { .desktop-nav { display: none !important; } }
+    @media (min-width: 1025px) { #hamburger { display: none; } }
+
+    /* Legal content styles */
+    .legal-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .legal-section {
+      padding: 2rem 0;
+      border-bottom: 1px solid rgba(142, 200, 234, 0.08);
+    }
+    .legal-section:last-child { border-bottom: none; }
+    .legal-section h2 {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.01em;
+      margin-bottom: 0.75rem;
+    }
+    .legal-section p {
+      font-size: 0.9375rem;
+      line-height: 1.8;
+      color: rgba(232, 237, 245, 0.7);
+    }
+    .legal-email {
+      color: var(--sky-light);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(142, 200, 234, 0.3);
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .legal-email:hover { color: var(--gold); border-color: rgba(245, 185, 62, 0.5); }
+  </style>
+</head>
+
+<body>
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WMZ4BKPW"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- ════════════════════════════
+       NAVIGATION
+  ════════════════════════════ -->
+  <nav id="navbar">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3 flex-shrink-0" style="text-decoration:none;">
+        <img src="../Brand_assets/Pacifico digital-02 letra blanca.png" alt="Pacífico Digital" style="height:40px;width:auto;display:block;" />
+      </a>
+      <div class="desktop-nav flex items-center gap-8">
+        <a href="/#servicios" class="nav-link">Servicios</a>
+        <a href="/#proceso" class="nav-link">Proceso</a>
+        <a href="/#resultados" class="nav-link">Resultados</a>
+        <a href="/#nosotros" class="nav-link">Nosotros</a>
+        <a href="https://wa.me/message/SP6UI7RJOSZPE1" target="_blank" rel="noopener" class="btn-primary" style="padding:0.6rem 1.5rem;font-size:0.875rem;">Hablemos</a>
+      </div>
+      <button id="hamburger" aria-label="Abrir menú" style="background:none;border:none;cursor:pointer;padding:4px;color:#E8EDF5;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" role="dialog" aria-label="Menú de navegación">
+    <button id="close-menu" aria-label="Cerrar menú" style="position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;cursor:pointer;color:#E8EDF5;">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <a href="/#servicios" class="mobile-link">Servicios</a>
+    <a href="/#proceso" class="mobile-link">Proceso</a>
+    <a href="/#resultados" class="mobile-link">Resultados</a>
+    <a href="/#nosotros" class="mobile-link">Nosotros</a>
+    <a href="https://wa.me/message/SP6UI7RJOSZPE1" target="_blank" rel="noopener" class="btn-primary mt-4">Hablemos</a>
+  </div>
+
+
+  <!-- ════════════════════════════
+       PAGE HEADER
+  ════════════════════════════ -->
+  <section style="padding-top:9rem;padding-bottom:4rem;position:relative;overflow:hidden;background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(75,168,213,0.12) 0%,transparent 60%),linear-gradient(180deg,#0D1628 0%,#0F1C33 100%);">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="section-label mb-5">Legal</div>
+      <h1 class="font-display font-black" style="font-size:clamp(2.25rem,6vw,4rem);line-height:1.08;max-width:600px;">
+        Aviso de <span class="gold-text">Privacidad</span>
+      </h1>
+      <p class="mt-5 text-sm" style="color:rgba(232,237,245,0.4);">Última actualización: 18 de junio de 2026</p>
+    </div>
+    <div style="position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(to bottom,transparent,var(--midnight));"></div>
+  </section>
+
+
+  <!-- ════════════════════════════
+       CONTENT
+  ════════════════════════════ -->
+  <section style="padding-top:3rem;padding-bottom:5rem;">
+    <div class="legal-body">
+
+      <div class="legal-section">
+        <h2>Responsable</h2>
+        <p>Pacífico Digital, con domicilio en Culiacán, Sinaloa, México. Para cualquier asunto relacionado con el tratamiento de tus datos personales, puedes contactarnos en: <a href="mailto:contacto@pacifico.digital" class="legal-email">contacto@pacifico.digital</a>.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Datos que recolectamos</h2>
+        <p>A través del formulario de contacto en este sitio recolectamos nombre, correo electrónico, servicio de interés y mensaje opcional. No recolectamos datos sensibles.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Finalidad</h2>
+        <p>Usamos estos datos únicamente para responder tu solicitud de consulta, dar seguimiento comercial y, si lo autorizas, enviarte información sobre nuestros servicios. No vendemos ni compartimos tus datos con terceros.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Datos de clientes de campañas publicitarias</h2>
+        <p>En el curso de nuestros servicios de Campañas Pagadas (Meta Ads, Google Ads, TikTok Ads), Pacífico Digital puede tener acceso a información de cuentas publicitarias y métricas de desempeño de nuestros clientes. Esta información es estrictamente confidencial y se usa únicamente para fines de gestión, reporte y optimización de las campañas del cliente correspondiente.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Cookies y herramientas de analítica</h2>
+        <p>Este sitio utiliza Google Tag Manager y herramientas similares para entender el uso del sitio. Puedes desactivar cookies desde la configuración de tu navegador.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Derechos ARCO</h2>
+        <p>Conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, puedes ejercer tus derechos de Acceso, Rectificación, Cancelación y Oposición escribiendo a <a href="mailto:contacto@pacifico.digital" class="legal-email">contacto@pacifico.digital</a>.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Cambios al aviso</h2>
+        <p>Podemos actualizar este aviso periódicamente; la fecha de última actualización aparecerá al final de esta página.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════
+       FOOTER
+  ════════════════════════════ -->
+  <footer class="pt-16 pb-8" style="border-top:1px solid rgba(142,200,234,0.1);">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+        <!-- Brand col -->
+        <div class="lg:col-span-1">
+          <img src="../Brand_assets/Pacifico digital-02 letra blanca.png" alt="Pacífico Digital" style="height:36px;width:auto;display:block;margin-bottom:1rem;" />
+          <p class="text-sm text-[rgba(232,237,245,0.5)] leading-relaxed mb-6" style="max-width:240px;">
+            Tu agencia de marketing digital de confianza. Resultados reales, estrategias comprobadas.
+          </p>
+          <div class="flex gap-3">
+            <a href="https://www.instagram.com/pacificodigitalmx" target="_blank" rel="noopener" aria-label="Instagram" class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:rgba(25,40,71,0.7);border:1px solid rgba(142,200,234,0.1);transition:border-color 0.2s ease;" onmouseover="this.style.borderColor='rgba(245,185,62,0.4)'" onmouseout="this.style.borderColor='rgba(142,200,234,0.1)'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(232,237,245,0.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/PacificoDigitalMx" target="_blank" rel="noopener" aria-label="Facebook" class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:rgba(25,40,71,0.7);border:1px solid rgba(142,200,234,0.1);transition:border-color 0.2s ease;" onmouseover="this.style.borderColor='rgba(245,185,62,0.4)'" onmouseout="this.style.borderColor='rgba(142,200,234,0.1)'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(232,237,245,0.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Servicios -->
+        <div>
+          <h4 class="font-display font-bold text-white text-sm mb-4 uppercase tracking-wider">Servicios</h4>
+          <ul class="space-y-2.5">
+            <li><a href="/#servicios" class="footer-link">Estrategia Digital</a></li>
+            <li><a href="/#servicios" class="footer-link">Campañas Pagadas</a></li>
+            <li><a href="/#servicios" class="footer-link">Creación de Contenido</a></li>
+            <li><a href="/#servicios" class="footer-link">Auditoría de Estrategia</a></li>
+          </ul>
+        </div>
+
+        <!-- Empresa -->
+        <div>
+          <h4 class="font-display font-bold text-white text-sm mb-4 uppercase tracking-wider">Empresa</h4>
+          <ul class="space-y-2.5">
+            <li><a href="/#nosotros" class="footer-link">Sobre nosotros</a></li>
+            <li><a href="/#proceso" class="footer-link">Proceso</a></li>
+            <li><a href="/#resultados" class="footer-link">Casos de éxito</a></li>
+            <li><a href="/#contacto" class="footer-link">Contacto</a></li>
+            <li><a href="/privacy-policy/" class="footer-link" style="color:rgba(232,237,245,0.65);">Política de Privacidad</a></li>
+            <li><a href="/terms-of-service/" class="footer-link" style="color:rgba(232,237,245,0.65);">Términos de Servicio</a></li>
+          </ul>
+        </div>
+
+        <!-- Contacto -->
+        <div>
+          <h4 class="font-display font-bold text-white text-sm mb-4 uppercase tracking-wider">Contacto</h4>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-sm text-[rgba(232,237,245,0.5)]">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--sky-light)" class="mt-0.5 flex-shrink-0">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              +52 667 177 1465
+            </li>
+            <li class="flex items-start gap-3 text-sm text-[rgba(232,237,245,0.5)]">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--sky-light)" stroke-width="2" stroke-linecap="round" class="mt-0.5 flex-shrink-0">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+              Culiacán, Sinaloa, México
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="divider mb-8"></div>
+
+      <div class="flex items-center justify-center text-xs text-[rgba(232,237,245,0.35)]">
+        <span>© 2026 Pacífico Digital. Todos los derechos reservados.</span>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeMenu = document.getElementById('close-menu');
+    hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+    closeMenu.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    mobileMenu.querySelectorAll('.mobile-link, .btn-primary').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    });
+  </script>
+
+</body>
+</html>
