@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nosotros — Pacífico Digital</title>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WMZ4BKPW');</script>
+  <!-- End Google Tag Manager -->
+
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900,300i,400i,500i,700i,900i&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            midnight: '#0D1628',
+            navy: '#111E36',
+            'navy-light': '#192847',
+            'sky-light': '#8EC8EA',
+            'sky-mid': '#4BA8D5',
+            'sky-dark': '#2A7FAF',
+            gold: '#F5B93E',
+            'gold-light': '#FAD06A',
+            'gold-dark': '#D9961A',
+          },
+          fontFamily: {
+            display: ['Satoshi', 'sans-serif'],
+            body: ['Satoshi', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root {
+      --midnight: #0D1628;
+      --navy: #111E36;
+      --navy-light: #192847;
+      --sky-light: #8EC8EA;
+      --sky-mid: #4BA8D5;
+      --gold: #F5B93E;
+      --gold-light: #FAD06A;
+      --gold-dark: #D9961A;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Satoshi', sans-serif;
+      background-color: var(--midnight);
+      color: #E8EDF5;
+      overflow-x: hidden;
+    }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    h1, h2, h3, h4 { font-family: 'Satoshi', sans-serif; letter-spacing: -0.03em; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--midnight); }
+    ::-webkit-scrollbar-thumb { background: var(--navy-light); border-radius: 3px; }
+
+    /* Navbar */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.5rem 0;
+      transition: background 0.4s ease, padding 0.4s ease, backdrop-filter 0.4s ease;
+    }
+    #navbar.scrolled {
+      background: rgba(13, 22, 40, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(142, 200, 234, 0.1);
+    }
+
+    .nav-link {
+      position: relative;
+      color: rgba(232, 237, 245, 0.75);
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.25s ease;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0; right: 0;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .nav-link:hover { color: #fff; }
+    .nav-link:hover::after { transform: scaleX(1); }
+    .nav-link.active { color: #fff; }
+    .nav-link.active::after { transform: scaleX(1); }
+
+    /* Buttons */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gold);
+      color: var(--midnight);
+      font-family: 'Satoshi', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+      padding: 0.875rem 2rem;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 8px 32px rgba(245, 185, 62, 0.35), 0 2px 8px rgba(245, 185, 62, 0.2);
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, background 0.2s ease;
+    }
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 0 0 4px rgba(245, 185, 62, 0.15), 0 12px 40px rgba(245, 185, 62, 0.45), 0 4px 12px rgba(245, 185, 62, 0.25);
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: #E8EDF5;
+      font-family: 'Satoshi', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.875rem 2rem;
+      border-radius: 100px;
+      border: 1px solid rgba(232, 237, 245, 0.25);
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.25s ease, background 0.25s ease;
+    }
+    .btn-outline:hover {
+      border-color: rgba(142, 200, 234, 0.6);
+      background: rgba(142, 200, 234, 0.06);
+      transform: translateY(-2px);
+    }
+
+    /* Section label */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* Gold text gradient */
+    .gold-text {
+      display: inline-block;
+      padding: 0 0.06em 0.08em;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 60%, #fff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .sky-text {
+      display: inline-block;
+      padding: 0 0.06em 0.08em;
+      background: linear-gradient(135deg, var(--sky-mid) 0%, var(--sky-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(142, 200, 234, 0.2), transparent);
+    }
+
+    /* Footer */
+    .footer-link {
+      color: rgba(232, 237, 245, 0.5);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s ease;
+    }
+    .footer-link:hover { color: var(--sky-light); }
+
+    /* Mobile menu */
+    #mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 99;
+      background: rgba(11, 18, 34, 0.97);
+      backdrop-filter: blur(20px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    #mobile-menu.open { display: flex; }
+    .mobile-link {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 2rem;
+      color: rgba(232, 237, 245, 0.9);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .mobile-link:hover { color: var(--gold); }
+
+    /* Reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    #page-hero .reveal {
+      opacity: 0;
+      animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Particle */
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    @keyframes float1 {
+      0%,100%{transform:translateY(0) translateX(0);}
+      33%{transform:translateY(-18px) translateX(8px);}
+      66%{transform:translateY(10px) translateX(-6px);}
+    }
+    @keyframes float2 {
+      0%,100%{transform:translateY(0) translateX(0);}
+      33%{transform:translateY(14px) translateX(-10px);}
+      66%{transform:translateY(-8px) translateX(12px);}
+    }
+
+    /* Desktop nav hidden on mobile */
+    @media (max-width: 768px) {
+      .desktop-nav { display: none !important; }
+    }
+
+    /* ── Page Hero ── */
+    #page-hero {
+      position: relative;
+      min-height: 72vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 70% 20%, rgba(245, 185, 62, 0.08) 0%, transparent 55%),
+        radial-gradient(ellipse 80% 50% at 20% 80%, rgba(75, 168, 213, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 90% 70%, rgba(142, 200, 234, 0.06) 0%, transparent 50%),
+        linear-gradient(180deg, #0D1628 0%, #0F1C33 70%, #0D1628 100%);
+    }
+
+    /* ── Belief cards ── */
+    .belief-item {
+      display: grid;
+      grid-template-columns: 120px 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+      padding: 3rem 0;
+      position: relative;
+    }
+    @media (max-width: 900px) {
+      .belief-item {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 2rem 0;
+      }
+      .belief-num { font-size: 4rem !important; }
+    }
+    .belief-num {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 7rem;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      background: linear-gradient(180deg, rgba(245,185,62,0.25) 0%, rgba(245,185,62,0.05) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      user-select: none;
+    }
+    .belief-heading {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #E8EDF5;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      padding-top: 0.5rem;
+    }
+    .belief-text {
+      font-size: 0.95rem;
+      color: rgba(232, 237, 245, 0.6);
+      line-height: 1.75;
+      padding-top: 0.5rem;
+    }
+    .belief-divider {
+      height: 1px;
+      background: linear-gradient(90deg, rgba(245,185,62,0.15), rgba(142,200,234,0.1), transparent);
+    }
+
+    /* ── Stat box ── */
+    .stat-box {
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(25, 40, 71, 0.6) 0%, rgba(17, 30, 54, 0.4) 100%);
+      border: 1px solid rgba(142, 200, 234, 0.12);
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0.5;
+    }
+    .stat-val {
+      font-family: 'Satoshi', sans-serif;
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Client type pills ── */
+    .client-card {
+      background: linear-gradient(135deg, rgba(25, 40, 71, 0.7) 0%, rgba(17, 30, 54, 0.5) 100%);
+      border: 1px solid rgba(142, 200, 234, 0.12);
+      border-radius: 16px;
+      padding: 1.75rem 2rem;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .client-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--sky-mid), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .client-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(142, 200, 234, 0.28);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+    }
+    .client-card:hover::before { opacity: 1; }
+
+    /* ── CTA section ── */
+    #cta {
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 80% at 50% 50%, rgba(75, 168, 213, 0.1) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 80% 20%, rgba(245, 185, 62, 0.08) 0%, transparent 50%);
+    }
+
+    /* Accent rule */
+    .accent-rule {
+      width: 48px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--sky-mid));
+      border-radius: 2px;
+    }
+
+    /* History year ghost */
+    .year-ghost {
+      font-family: 'Satoshi', sans-serif;
+      font-size: clamp(8rem, 18vw, 16rem);
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      line-height: 1;
+      background: linear-gradient(180deg, rgba(142,200,234,0.07) 0%, rgba(142,200,234,0.02) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      user-select: none;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WMZ4BKPW" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- ════════════════════════════
+     NAVBAR
+════════════════════════════ -->
+<nav id="navbar">
+  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3 flex-shrink-0" style="text-decoration:none;">
+      <img src="/Brand_assets/Pacifico digital-02 letra blanca.png" alt="Pacífico Digital" style="height:40px;width:auto;display:block;" />
+    </a>
+    <div class="desktop-nav flex items-center gap-8">
+      <a href="/#servicios" class="nav-link">Servicios</a>
+      <a href="/#proceso" class="nav-link">Proceso</a>
+      <a href="/#resultados" class="nav-link">Resultados</a>
+      <a href="/nosotros/" class="nav-link active">Nosotros</a>
+      <a href="https://wa.me/message/SP6UI7RJOSZPE1" target="_blank" rel="noopener" class="btn-primary text-sm" style="padding:0.6rem 1.5rem;">Hablemos</a>
+    </div>
+    <button id="hamburger" aria-label="Abrir menú" style="background:none;border:none;cursor:pointer;padding:4px;color:#E8EDF5;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div id="mobile-menu" role="dialog" aria-label="Menú de navegación">
+  <button id="close-menu" aria-label="Cerrar menú" style="position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;cursor:pointer;color:#E8EDF5;">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+  <a href="/#servicios" class="mobile-link">Servicios</a>
+  <a href="/#proceso" class="mobile-link">Proceso</a>
+  <a href="/#resultados" class="mobile-link">Resultados</a>
+  <a href="/nosotros/" class="mobile-link">Nosotros</a>
+  <a href="https://wa.me/message/SP6UI7RJOSZPE1" target="_blank" rel="noopener" class="btn-primary mt-4">Hablemos</a>
+</div>
+
+
+<!-- ════════════════════════════
+     PAGE HERO
+════════════════════════════ -->
+<section id="page-hero">
+  <div class="page-hero-bg"></div>
+
+  <!-- Particles -->
+  <div class="particle" style="width:4px;height:4px;background:rgba(245,185,62,0.5);top:25%;left:10%;animation:float1 8s ease-in-out infinite;"></div>
+  <div class="particle" style="width:3px;height:3px;background:rgba(142,200,234,0.6);top:55%;left:80%;animation:float2 11s ease-in-out infinite;"></div>
+  <div class="particle" style="width:5px;height:5px;background:rgba(75,168,213,0.35);top:70%;left:25%;animation:float1 13s ease-in-out infinite;"></div>
+  <div class="particle" style="width:3px;height:3px;background:rgba(245,185,62,0.4);top:35%;left:60%;animation:float2 9s ease-in-out infinite;"></div>
+
+  <!-- Subtle glow top-right -->
+  <div style="position:absolute;top:5%;right:5%;width:420px;height:420px;background:radial-gradient(circle,rgba(245,185,62,0.06) 0%,transparent 70%);border-radius:50%;pointer-events:none;"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10 w-full" style="padding-top:10rem;padding-bottom:7rem;">
+    <div class="max-w-4xl">
+      <div class="section-label reveal" style="margin-bottom:1.5rem;">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <circle cx="8" cy="8" r="3" fill="var(--gold)"/>
+        </svg>
+        Nosotros
+      </div>
+
+      <h1 class="font-display font-black reveal reveal-delay-1"
+          style="font-size:clamp(2.8rem,6vw,5.5rem);line-height:1.05;margin-bottom:1.75rem;">
+        Somos Pacífico Digital,<br>
+        <span class="sky-text">una agencia de Culiacán.</span>
+      </h1>
+
+      <p class="reveal reveal-delay-2"
+         style="font-size:1.1rem;color:rgba(232,237,245,0.65);line-height:1.8;max-width:680px;margin-bottom:3rem;">
+        Con experiencia en campañas locales, nacionales e internacionales. Llevamos años administrando presupuestos de publicidad digital de distintas escalas — sabemos lo que significa tener responsabilidad sobre el dinero de un cliente.
+      </p>
+
+      <!-- Stat -->
+      <div class="reveal reveal-delay-3">
+        <div style="font-size:clamp(2.5rem,5vw,4rem);font-weight:900;letter-spacing:-0.04em;line-height:1;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">10+</div>
+        <div style="font-size:0.8rem;color:rgba(232,237,245,0.45);font-weight:500;letter-spacing:0.05em;text-transform:uppercase;margin-top:0.35rem;">Años de experiencia combinada</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom fade -->
+  <div style="position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to bottom,transparent,var(--midnight));pointer-events:none;"></div>
+</section>
+
+
+<!-- ════════════════════════════
+     HISTORIA
+════════════════════════════ -->
+<section style="padding:7rem 0;position:relative;overflow:hidden;">
+
+  <!-- Ghost year in background -->
+  <div style="position:absolute;right:-4%;top:50%;transform:translateY(-50%);pointer-events:none;user-select:none;">
+    <div class="year-ghost">2023</div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Left: content -->
+      <div>
+        <div class="section-label reveal" style="margin-bottom:1.25rem;">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="3" fill="var(--gold)"/>
+          </svg>
+          Nuestra historia
+        </div>
+        <h2 class="font-display font-black reveal reveal-delay-1"
+            style="font-size:clamp(2rem,4vw,3.2rem);line-height:1.1;margin-bottom:2rem;">
+          Nació en <span class="gold-text">2023.</span> La experiencia viene de mucho antes.
+        </h2>
+        <div style="display:flex;flex-direction:column;gap:1.25rem;">
+          <p class="reveal reveal-delay-2" style="font-size:1rem;color:rgba(232,237,245,0.65);line-height:1.8;">
+            Lo que empezó como un proyecto freelance fue tomando forma hasta convertirse en una sociedad construida sobre más de 10 años de experiencia combinada en marketing. Años trabajando con marcas de distintos tamaños, en distintos mercados, con presupuestos de distinta escala.
+          </p>
+          <p class="reveal reveal-delay-3" style="font-size:1rem;color:rgba(232,237,245,0.65);line-height:1.8;">
+            Decidimos formalizarlo porque había una oportunidad clara: negocios que merecen una estrategia digital de verdad, no soluciones de catálogo.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right: stat boxes -->
+      <div class="reveal reveal-delay-2" style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;">
+        <div class="stat-box">
+          <div class="stat-val">10+</div>
+          <div style="font-size:0.85rem;color:rgba(232,237,245,0.5);margin-top:0.75rem;line-height:1.5;">Años de experiencia combinada en marketing</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val" style="background:linear-gradient(135deg,var(--sky-mid) 0%,var(--sky-light) 100%);">Local</div>
+          <div style="font-size:0.85rem;color:rgba(232,237,245,0.5);margin-top:0.75rem;line-height:1.5;">Culiacán. Nacional e internacional también.</div>
+        </div>
+        <div class="stat-box" style="grid-column:span 2;">
+          <div style="font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;">Fundada en</div>
+          <div class="stat-val">2023</div>
+          <div style="font-size:0.85rem;color:rgba(232,237,245,0.5);margin-top:0.75rem;line-height:1.5;">Con décadas de experiencia respaldando cada decisión desde el primer día.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<div class="max-w-7xl mx-auto px-6"><div class="divider"></div></div>
+
+
+<!-- ════════════════════════════
+     EN QUÉ CREEMOS
+════════════════════════════ -->
+<section style="padding:7rem 0;">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div style="margin-bottom:4rem;">
+      <div class="section-label reveal" style="margin-bottom:1.25rem;">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <circle cx="8" cy="8" r="3" fill="var(--gold)"/>
+        </svg>
+        En qué creemos
+      </div>
+      <h2 class="font-display font-black reveal reveal-delay-1"
+          style="font-size:clamp(2rem,4vw,3.2rem);line-height:1.1;max-width:600px;">
+        Los principios que guían cada <span class="gold-text italic">proyecto.</span>
+      </h2>
+    </div>
+
+    <!-- Belief 01 -->
+    <div class="belief-divider"></div>
+    <div class="belief-item reveal">
+      <div class="belief-num">01</div>
+      <div class="belief-heading">No vendemos paquetes.</div>
+      <div class="belief-text">
+        Cada cliente tiene un negocio distinto, un mercado distinto y objetivos distintos. Armar una estrategia genérica y aplicarla igual para todos es la forma más rápida de desperdiciar presupuesto. Todo lo que hacemos es diseñado específicamente para ti.
+      </div>
+    </div>
+    <div class="belief-divider"></div>
+
+    <!-- Belief 02 -->
+    <div class="belief-item reveal">
+      <div class="belief-num">02</div>
+      <div class="belief-heading">Nos convertimos en tu área de marketing digital.</div>
+      <div class="belief-text">
+        No somos una agencia externa que te manda un reporte una vez al mes. Nos metemos a las tripas del negocio, entendemos el producto, el cliente y la competencia, y trabajamos desde adentro para que los resultados sean reales.
+      </div>
+    </div>
+    <div class="belief-divider"></div>
+
+    <!-- Belief 03 -->
+    <div class="belief-item reveal">
+      <div class="belief-num">03</div>
+      <div class="belief-heading">Datos primero, criterio siempre.</div>
+      <div class="belief-text">
+        Todas nuestras decisiones están respaldadas por información real. Conectamos directamente con las APIs de Google, Meta, TikTok y otras plataformas para tener los datos de primera mano, sin intermediarios que los interpreten mal. Automatizamos lo que tiene sentido automatizar y usamos inteligencia artificial donde acelera el trabajo. Lo que una máquina no puede resolver, la estrategia, el criterio, la relación con el cliente, eso se queda en manos humanas. Siempre.
+      </div>
+    </div>
+    <div class="belief-divider"></div>
+
+    <!-- Belief 04 -->
+    <div class="belief-item reveal">
+      <div class="belief-num">04</div>
+      <div class="belief-heading">Los resultados tienen que pagarse solos.</div>
+      <div class="belief-text">
+        Cada decisión, cada peso invertido, cada campaña y cada ajuste tiene que justificarse en números concretos. No trabajamos para acumular métricas bonitas.
+      </div>
+    </div>
+    <div class="belief-divider"></div>
+
+  </div>
+</section>
+
+
+<div class="max-w-7xl mx-auto px-6"><div class="divider"></div></div>
+
+
+<!-- ════════════════════════════
+     CON QUIÉN TRABAJAMOS
+════════════════════════════ -->
+<section style="padding:7rem 0;">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+      <div>
+        <div class="section-label reveal" style="margin-bottom:1.25rem;">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="3" fill="var(--gold)"/>
+          </svg>
+          Con quién trabajamos
+        </div>
+        <h2 class="font-display font-black reveal reveal-delay-1"
+            style="font-size:clamp(2rem,4vw,3.2rem);line-height:1.1;margin-bottom:1.5rem;">
+          Si vendes algo y quieres<br><span class="sky-text">vender más.</span>
+        </h2>
+        <p class="reveal reveal-delay-2" style="font-size:1rem;color:rgba(232,237,245,0.6);line-height:1.8;max-width:480px;">
+          Probablemente podemos ayudarte. Trabajamos con negocios que tienen claro que el marketing digital debe generar retorno, no solo presencia.
+        </p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+
+        <div class="client-card reveal">
+          <div style="display:flex;align-items:center;gap:1rem;margin-bottom:0.75rem;">
+            <div style="width:40px;height:40px;border-radius:10px;background:rgba(245,185,62,0.1);border:1px solid rgba(245,185,62,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+            </div>
+            <div style="font-size:1rem;font-weight:700;color:#E8EDF5;">Negocios locales en crecimiento</div>
+          </div>
+          <p style="font-size:0.9rem;color:rgba(232,237,245,0.55);line-height:1.7;">
+            Empresas locales que quieren crecer sus ventas y construir presencia digital sólida. Sabemos cómo funciona el mercado del noroeste.
+          </p>
+        </div>
+
+        <div class="client-card reveal reveal-delay-1">
+          <div style="display:flex;align-items:center;gap:1rem;margin-bottom:0.75rem;">
+            <div style="width:40px;height:40px;border-radius:10px;background:rgba(75,168,213,0.1);border:1px solid rgba(75,168,213,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sky-mid)" stroke-width="2" stroke-linecap="round">
+                <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+            </div>
+            <div style="font-size:1rem;font-weight:700;color:#E8EDF5;">Marcas que están arrancando</div>
+          </div>
+          <p style="font-size:0.9rem;color:rgba(232,237,245,0.55);line-height:1.7;">
+            Startups y marcas nuevas que necesitan posicionarse bien desde el principio. Una buena base digital desde el día uno ahorra mucho dinero después.
+          </p>
+        </div>
+
+        <div class="client-card reveal reveal-delay-2">
+          <div style="display:flex;align-items:center;gap:1rem;margin-bottom:0.75rem;">
+            <div style="width:40px;height:40px;border-radius:10px;background:rgba(245,185,62,0.1);border:1px solid rgba(245,185,62,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 0 1-8 0"/>
+              </svg>
+            </div>
+            <div style="font-size:1rem;font-weight:700;color:#E8EDF5;">Ecommerce con foco en resultados</div>
+          </div>
+          <p style="font-size:0.9rem;color:rgba(232,237,245,0.55);line-height:1.7;">
+            Tiendas en línea que ya tienen volumen y necesitan campañas más eficientes. Cada peso en pauta tiene que generar más de lo que cuesta.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════
+     CTA
+════════════════════════════ -->
+<section id="cta" style="padding:8rem 0;border-top:1px solid rgba(142,200,234,0.08);">
+  <div class="cta-bg"></div>
+  <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
+    <div class="section-label reveal" style="margin-bottom:1.5rem;justify-content:center;">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <circle cx="8" cy="8" r="3" fill="var(--gold)"/>
+      </svg>
+      Trabajemos juntos
+    </div>
+    <h2 class="font-display font-black reveal reveal-delay-1"
+        style="font-size:clamp(2.2rem,5vw,4rem);line-height:1.1;margin-bottom:1.5rem;max-width:700px;margin-left:auto;margin-right:auto;">
+      La primera conversación no <span class="gold-text italic">cuesta nada.</span>
+    </h2>
+    <p class="reveal reveal-delay-2"
+       style="font-size:1.05rem;color:rgba(232,237,245,0.6);line-height:1.8;max-width:520px;margin:0 auto 3rem;">
+      Cuéntanos qué estás buscando y vemos si tiene sentido trabajar juntos.
+    </p>
+    <div class="reveal reveal-delay-3" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="https://wa.me/message/SP6UI7RJOSZPE1" target="_blank" rel="noopener" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Escríbenos por WhatsApp
+      </a>
+      <a href="/" class="btn-outline">Ver nuestros servicios</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════
+     FOOTER
+════════════════════════════ -->
+<footer class="pt-16 pb-8" style="border-top:1px solid rgba(142,200,234,0.1);">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+      <!-- Brand col -->
+      <div class="lg:col-span-1">
+        <img src="/Brand_assets/Pacifico digital-02 letra blanca.png" alt="Pacífico Digital" style="height:36px;width:auto;display:block;margin-bottom:1rem;" />
+        <p class="text-sm text-[rgba(232,237,245,0.5)] leading-relaxed mb-6" style="max-width:240px;">
+          Tu agencia de marketing digital de confianza. Resultados reales, estrategias comprobadas.
+        </p>
+        <div class="flex gap-3">
+          <a href="https://www.instagram.com/pacificodigitalmx" target="_blank" rel="noopener" aria-label="Instagram" class="w-9 h-9 rounded-xl flex items-center justify-center transition-colors duration-200" style="background:rgba(25,40,71,0.7);border:1px solid rgba(142,200,234,0.1);" onmouseover="this.style.borderColor='rgba(245,185,62,0.4)'" onmouseout="this.style.borderColor='rgba(142,200,234,0.1)'">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(232,237,245,0.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/PacificoDigitalMx" target="_blank" rel="noopener" aria-label="Facebook" class="w-9 h-9 rounded-xl flex items-center justify-center transition-colors duration-200" style="background:rgba(25,40,71,0.7);border:1px solid rgba(142,200,234,0.1);" onmouseover="this.style.borderColor='rgba(245,185,62,0.4)'" onmouseout="this.style.borderColor='rgba(142,200,234,0.1)'">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(232,237,245,0.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Servicios -->
+      <div>
+        <h4 class="font-display font-bold text-white text-sm mb-4 uppercase tracking-wider">Servicios</h4>
+        <ul class="space-y-2.5">
+          <li><a href="/#servicios" class="footer-link">Estrategia Digital</a></li>
+          <li><a href="/#servicios" class="footer-link">Campañas Pagadas</a></li>
+          <li><a href="/#servicios" class="footer-link">Creación de Contenido</a></li>
+          <li><a href="/#servicios" class="footer-link">Auditoría de Estrategia</a></li>
+        </ul>
+      </div>
+
+      <!-- Empresa -->
+      <div>
+        <h4 class="font-display font-bold text-white text-sm mb-4 uppercase tracking-wider">Empresa</h4>
+        <ul class="space-y-2.5">
+          <li><a href="/nosotros/" class="footer-link">Sobre nosotros</a></li>
+          <li><a href="/#proceso" class="footer-link">Proceso</a></li>
+          <li><a href="/#resultados" class="footer-link">Casos de éxito</a></li>
+          <li><a href="/#contacto" class="footer-link">Contacto</a></li>
+        </ul>
+      </div>
+
+      <!-- Contacto -->
+      <div>
+        <h4 class="font-display font-bold text-white text-sm mb-4 uppercase tracking-wider">Contacto</h4>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3 text-sm text-[rgba(232,237,245,0.5)]">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--sky-light)" class="mt-0.5 flex-shrink-0">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            +52 667 177 1465
+          </li>
+          <li class="flex items-start gap-3 text-sm text-[rgba(232,237,245,0.5)]">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--sky-light)" stroke-width="2" stroke-linecap="round" class="mt-0.5 flex-shrink-0">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+            Culiacán, Sinaloa, México
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="divider mb-8"></div>
+
+    <div class="flex items-center justify-between text-xs" style="color:rgba(232,237,245,0.35);">
+      <span>© 2026 Pacífico Digital. Todos los derechos reservados.</span>
+      <div class="flex items-center gap-5">
+        <a href="/privacidad/" style="color:rgba(232,237,245,0.35);text-decoration:none;transition:color 0.2s ease;" onmouseover="this.style.color='rgba(232,237,245,0.6)'" onmouseout="this.style.color='rgba(232,237,245,0.35)'">Privacidad</a>
+        <a href="/terminos/" style="color:rgba(232,237,245,0.35);text-decoration:none;transition:color 0.2s ease;" onmouseover="this.style.color='rgba(232,237,245,0.6)'" onmouseout="this.style.color='rgba(232,237,245,0.35)'">Términos</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+
+<script>
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // Mobile menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const closeMenu = document.getElementById('close-menu');
+  hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+  closeMenu.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  mobileMenu.querySelectorAll('.mobile-link, .btn-primary').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+
+  // Scroll reveal
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // Trigger hero reveals immediately
+  document.querySelectorAll('#page-hero .reveal').forEach(el => el.classList.add('visible'));
+  setTimeout(() => {
+    document.querySelectorAll('#page-hero .reveal').forEach(el => el.classList.add('visible'));
+  }, 50);
+
+  // Force all reveals for preview screenshots
+  if (new URLSearchParams(location.search).get('preview') === '1') {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+  }
+</script>
+
+</body>
+</html>
